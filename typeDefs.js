@@ -50,18 +50,12 @@ const typeDefs = `
     spells: [Spell]
   }
 
-  union CharacterUnion = Fighter | Wizard
-
   type Query {
     fighters: [Fighter]
     fighter(id: ID!): Fighter
     wizards: [Wizard]
     wizard(id: ID!): Wizard
     characters: [Character]
-  }
-
-  schema {
-    query: Query
   }
 `
 

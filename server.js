@@ -1,17 +1,22 @@
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
 const { buildSchema } = require('graphql')
-const { makeExecutableSchema } = require('@graphql-tools/schema')
 
 const { typeDefs } = require('./typeDefs')
-const { resolvers } = require('./resolvers')
+const data = require('./data')
 
-const executableSchema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-})
+// Construct a schema, using GraphQL schema language
+const schema = buildSchema(typeDefs)
 
 // The root provides a resolver function for each API endpoint
+const rootValue = {
+  fighter: ({ id }) => data.fighters.find(fighter => fighter.id === id),
+  fighters: () => data.fighters,
+  wizard: ({ id }) => data.wizards.find(wizard => wizard.id === id),
+  wizards: () => data.wizards,
+  characters: () => data.characters,
+}
+
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -19,7 +24,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: executableSchema,
+    schema,
+    rootValue,
     graphiql: true,
   })
 )

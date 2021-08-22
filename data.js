@@ -29,6 +29,7 @@ const fighters = [
     weapon: weapons.find(weapon => weapon.name === 'Sword'),
     race: races.HUMAN,
     job: jobs.FIGHTER,
+    __typename: 'Fighter',
   },
   {
     id: '2',
@@ -37,6 +38,7 @@ const fighters = [
     weapon: weapons.find(weapon => weapon.name === 'Sword'),
     race: races.HUMAN,
     job: jobs.FIGHTER,
+    __typename: 'Fighter',
   },
 ]
 
@@ -48,6 +50,7 @@ const wizards = [
     spells,
     race: races.HUMAN,
     job: jobs.WIZARD,
+    __typename: 'Wizard',
   },
   {
     id: '2',
@@ -56,6 +59,7 @@ const wizards = [
     spells,
     race: races.HUMAN,
     job: jobs.WIZARD,
+    __typename: 'Wizard',
   },
 ]
 
