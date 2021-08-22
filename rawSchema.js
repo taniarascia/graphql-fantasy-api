@@ -1,4 +1,4 @@
-const typeDefs = `
+export const rawSchema = `
   enum Race {
     HUMAN
     ELF
@@ -58,5 +58,3 @@ const typeDefs = `
     characters: [Character]
   }
 `
-
-module.exports = { typeDefs }

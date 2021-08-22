@@ -1,15 +1,13 @@
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { buildSchema } = require('graphql')
+import express from 'express'
+import expressGraphQL from 'express-graphql'
+import graphQL from 'graphql'
 
-const { typeDefs } = require('./typeDefs')
-const data = require('./data')
+import { rawSchema } from './rawSchema.js'
+import * as data from './data.js'
 
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(typeDefs)
+const schema = graphQL.buildSchema(rawSchema)
 
-// The root provides a resolver function for each API endpoint
-const rootValue = {
+const resolvers = {
   fighter: ({ id }) => data.fighters.find(fighter => fighter.id === id),
   fighters: () => data.fighters,
   wizard: ({ id }) => data.wizards.find(wizard => wizard.id === id),
@@ -20,12 +18,11 @@ const rootValue = {
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 app.use(
   '/graphql',
-  graphqlHTTP({
+  expressGraphQL.graphqlHTTP({
     schema,
-    rootValue,
+    rootValue: resolvers,
     graphiql: true,
   })
 )
