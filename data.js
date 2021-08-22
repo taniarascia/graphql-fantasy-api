@@ -1,18 +1,20 @@
-export const jobs = {
-  FIGHTER: 'FIGHTER',
-  WIZARD: 'WIZARD',
-  RANGER: 'RANGER',
-}
-
+// Enums
 export const races = {
   HUMAN: 'HUMAN',
   DWARF: 'DWARF',
   ELF: 'ELF',
 }
 
+export const jobs = {
+  FIGHTER: 'FIGHTER',
+  WIZARD: 'WIZARD',
+}
+
+// Equipment and Abilities
 export const weapons = [
   { name: 'Sword', attack: 3, range: 1 },
   { name: 'Bow', attack: 2, range: 3 },
+  { name: 'Axe', attack: 4, range: 1 },
 ]
 
 export const spells = [
@@ -21,10 +23,11 @@ export const spells = [
   { name: 'Fireball', attack: 2, range: 2 },
 ]
 
+// Individual heroes
 export const fighters = [
   {
     id: '1',
-    name: 'Lancelot',
+    name: 'Arthur',
     level: 1,
     weapon: weapons.find(weapon => weapon.name === 'Sword'),
     race: races.HUMAN,
@@ -33,10 +36,10 @@ export const fighters = [
   },
   {
     id: '2',
-    name: 'Aragorn',
+    name: 'Gimli',
     level: 1,
-    weapon: weapons.find(weapon => weapon.name === 'Sword'),
-    race: races.HUMAN,
+    weapon: weapons.find(weapon => weapon.name === 'Axe'),
+    race: races.DWARF,
     job: jobs.FIGHTER,
     __typename: 'Fighter',
   },

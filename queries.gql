@@ -1,0 +1,41 @@
+query FetchMerlinQuery {
+  wizard(id: "2") {
+    name
+  }
+}
+
+query FetchSomeWizard($wizardId: ID!) {
+  wizard(id: $wizardId) {
+    id
+    name
+  }
+}
+
+{
+  fighter(id: "1") {
+    id
+    name
+    race
+    weapon {
+      name
+      attack
+      range
+    }
+  }
+  wizard(id: "1") {
+    id
+    name
+    spells {
+      name
+    }
+  }
+  wizards {
+    name
+  }
+  fighters {
+    name
+  }
+  characters {
+    name
+  }
+}

@@ -3,17 +3,9 @@ import expressGraphQL from 'express-graphql'
 import graphQL from 'graphql'
 
 import { rawSchema } from './rawSchema.js'
-import * as data from './data.js'
+import { resolvers } from './resolvers.js'
 
 const schema = graphQL.buildSchema(rawSchema)
-
-const resolvers = {
-  fighter: ({ id }) => data.fighters.find(fighter => fighter.id === id),
-  fighters: () => data.fighters,
-  wizard: ({ id }) => data.wizards.find(wizard => wizard.id === id),
-  wizards: () => data.wizards,
-  characters: () => data.characters,
-}
 
 const app = express()
 app.use(express.json())
