@@ -1,30 +1,30 @@
 // Enums
-export const races = {
+const races = {
   HUMAN: 'HUMAN',
   DWARF: 'DWARF',
   ELF: 'ELF',
 }
 
-export const jobs = {
+const jobs = {
   FIGHTER: 'FIGHTER',
   WIZARD: 'WIZARD',
 }
 
 // Equipment and Abilities
-export const weapons = [
+const weapons = [
   { name: 'Sword', attack: 3, range: 1 },
   { name: 'Bow', attack: 2, range: 3 },
   { name: 'Axe', attack: 4, range: 1 },
 ]
 
-export const spells = [
+const spells = [
   { name: 'Lightning Bolt', attack: 2, range: 2 },
-  { name: 'Ice Storm', attack: 2, range: 2 },
+  { name: 'Ice Storm', attack: 2, range: 2, effect: 'Frozen' },
   { name: 'Fireball', attack: 2, range: 2 },
 ]
 
 // Individual heroes
-export const fighters = [
+const fighters = [
   {
     id: '1',
     name: 'Arthur',
@@ -45,7 +45,7 @@ export const fighters = [
   },
 ]
 
-export const wizards = [
+const wizards = [
   {
     id: '1',
     name: 'Merlin',
@@ -66,4 +66,14 @@ export const wizards = [
   },
 ]
 
-export const characters = [...fighters, ...wizards]
+const characters = [...fighters, ...wizards]
+
+module.exports = {
+  races,
+  jobs,
+  weapons,
+  spells,
+  fighters,
+  wizards,
+  characters,
+}

@@ -1,9 +1,24 @@
-query FetchMerlinQuery {
-  wizard(id: "2") {
+query FetchWizards {
+  wizards {
+    name
+    level
+    race
+    job
+    spells {
+      name
+      attack
+      range
+    }
+  }
+}
+
+query FetchSpecificWizardQuery {
+  wizard(id: "1") {
     name
   }
 }
 
+# Pass data in Query Variables
 query FetchSomeWizard($wizardId: ID!) {
   wizard(id: $wizardId) {
     id
@@ -11,31 +26,37 @@ query FetchSomeWizard($wizardId: ID!) {
   }
 }
 
-{
-  fighter(id: "1") {
-    id
-    name
-    race
-    weapon {
-      name
-      attack
-      range
-    }
-  }
-  wizard(id: "1") {
-    id
-    name
-    spells {
-      name
-    }
-  }
-  wizards {
-    name
-  }
-  fighters {
-    name
-  }
+query FetchAllCharacters {
   characters {
-    name
+    ... on Fighter {
+      id
+      name
+    }
+    ... on Wizard {
+      id
+      name
+    }
+  }
+}
+
+mutation AddCharacter($input: CharacterInput!) {
+  addCharacter(input: $input) {
+    __typename
+    ... on Fighter {
+      id
+      name
+      race
+      weapon {
+        name
+      }
+    }
+    ... on Wizard {
+      id
+      name
+      race
+      spells {
+        name
+      }
+    }
   }
 }

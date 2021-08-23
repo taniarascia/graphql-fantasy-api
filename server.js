@@ -1,20 +1,23 @@
-import express from 'express'
-import expressGraphQL from 'express-graphql'
-import graphQL from 'graphql'
+const express = require('express')
+const graphQL = require('graphql')
+const { graphqlHTTP } = require('express-graphql')
+const { makeExecutableSchema } = require('@graphql-tools/schema')
 
-import { rawSchema } from './rawSchema.js'
-import { resolvers } from './resolvers.js'
+const { typeDefs } = require('./typeDefs.js')
+const { resolvers } = require('./resolvers.js')
 
-const schema = graphQL.buildSchema(rawSchema)
+const executableSchema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+})
 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(
   '/graphql',
-  expressGraphQL.graphqlHTTP({
-    schema,
-    rootValue: resolvers,
+  graphqlHTTP({
+    schema: executableSchema,
     graphiql: true,
   })
 )

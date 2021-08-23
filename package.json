@@ -1,6 +1,7 @@
 {
   "name": "graphql-fantasy-api",
   "dependencies": {
+    "@graphql-tools/schema": "^8.1.2",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.1",
@@ -9,6 +10,5 @@
   },
   "scripts": {
     "dev": "nodemon server.js"
-  },
-  "type": "module"
+  }
 }

@@ -1,4 +1,4 @@
-export const rawSchema = `
+const typeDefs = `
   "The job class of the character."
   enum Job {
     FIGHTER
@@ -22,6 +22,7 @@ export const rawSchema = `
   "A powerful spell that a wizard can read from a scroll."
   type Spell {
     name: String!
+    attack: Int
     range: Int
     effect: String
   }
@@ -72,6 +73,8 @@ export const rawSchema = `
     fighter(id: ID!): Fighter
     wizards: [Wizard]
     wizard(id: ID!): Wizard
-    characters: [Character]
+    characters: [CharacterType]
   }
 `
+
+module.exports = { typeDefs }
