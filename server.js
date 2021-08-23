@@ -3,6 +3,7 @@ const graphQL = require('graphql')
 const { graphqlHTTP } = require('express-graphql')
 const { makeExecutableSchema } = require('@graphql-tools/schema')
 
+const data = require('./data.js')
 const { typeDefs } = require('./typeDefs.js')
 const { resolvers } = require('./resolvers.js')
 
@@ -18,6 +19,7 @@ app.use(
   '/graphql',
   graphqlHTTP({
     schema: executableSchema,
+    context: data,
     graphiql: true,
   })
 )

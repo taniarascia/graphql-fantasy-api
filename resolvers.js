@@ -1,16 +1,14 @@
-const data = require('./data.js')
-
 const resolvers = {
   Query: {
-    fighter: (_, { id }) => data.fighters.find(fighter => fighter.id === id),
-    fighters: () => data.fighters,
-    wizard: (_, { id }) => data.wizards.find(wizard => wizard.id === id),
-    wizards: () => data.wizards,
-    characters: () => data.characters,
+    fighter: (obj, { id }, context) => context.fighters.find(fighter => fighter.id === id),
+    fighters: (obj, args, context) => context.fighters,
+    wizard: (obj, { id }, context) => context.wizards.find(wizard => wizard.id === id),
+    wizards: (obj, args, context) => context.wizards,
+    characters: (obj, args, context) => context.characters,
   },
 
   Mutation: {
-    addCharacter: (_, { input }) => {
+    addCharacter: (obj, { input }, context) => {
       const newCharacter = {
         id: Math.floor(Math.random() * 100).toString(),
         ...input,
@@ -18,11 +16,11 @@ const resolvers = {
       }
 
       if (input.job === 'FIGHTER') {
-        data.fighters.push(newCharacter)
+        context.fighters.push(newCharacter)
       }
 
       if (input.job === 'WIZARD') {
-        data.wizards.push({ ...newCharacter, spells: [] })
+        context.wizards.push({ ...newCharacter, spells: [] })
       }
 
       return newCharacter

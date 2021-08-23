@@ -40,7 +40,7 @@ Using Fantasy/RPG data for example schema. Build it into the graphQL server abov
   - Entrypoint (Operation) Types (`Query` and `Mutation`)
   - Comments/description (`""`)
 
-## Using GraphQL Queries and Mutations
+## Using GraphQL Queries, Mutations, and Resolvers
 
 - Queries (read)
   - Simple query (no name)
@@ -53,6 +53,10 @@ Using Fantasy/RPG data for example schema. Build it into the graphQL server abov
   - Fragments (`fragment` and `...`)
 - Mutations (write)
   - Input Types (`input`)
+- Resolvers
+  - Resolver functions
+  - `resolveType`
+  - Context
 
 ## Additional Information
 
