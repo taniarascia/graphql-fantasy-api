@@ -1,5 +1,7 @@
 # Outline
 
+GraphQL Fantasy API
+
 ## An Overview of GraphQL
 
 - What is GraphQL?
